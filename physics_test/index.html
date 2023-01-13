@@ -4,208 +4,83 @@
 <head>
     <title>Matter.js Example</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
-    <style>
-        #ball-container {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            top: 0px;
-            left: 0px;
-            color: blue;
-        }
-
-        .block {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            color: blue;
-            background-color: rgb(255, 0, 0);
-            z-index: 1;
-            font-size: 30px;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            pointer-events: none;
-        }
-
-        .clickable {
-            pointer-events: auto;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js" />
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
-
-
     <canvas id="canvas"
         style="position: absolute; top:0px; left:0px; height: 100%; width:100%; overflow: hidden;"></canvas>
-    <div class="block">Made with <a href="http://brm.io/matter-js/">Matter.js</a></div>
-    <div data-url="http://www.example.com" class="block">:)</div>
-    <div class="block">It's HTML5!!</div>
+ 
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/color/70/null/whatsapp--v1.png" />
+        <p>WhatsApp</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/color/70/null/facebook-messenger--v1.png" />
+        <p>Messenger</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/color/70/null/facebook.png" />
+        <p>Facebook</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/color/70/null/linkedin.png" />
+        <p>LinkedIn</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/ios-glyphs/70/null/github.png" />
+        <p>GitHub</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/color/70/null/youtube-play.png" />
+        <p>YouTube</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/ios/60/null/new-post--v1.png" style="height: 50px; padding: 5px"/>
+        <p>Mail</p>
+    </div>
+    <div class="bubble">
+        <img src="https://img.icons8.com/color/70/null/instagram-new--v1.png" />
+        <p>Instagram</p data-url="http://www.example.com">
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="icons/cult.png" style="height: 45x; padding: 5px">
+        <p>Cult3d</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="icons/thingiverse.png" style="height: 45px; padding: 5px">
+        <p>Thingiverse</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="icons/turbosquid.png" style="height: 45px; padding: 5px">
+        <p>Turbosquid</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="icons/printables.png" style="height: 45px; padding: 5px">
+        <p>Printables</p>
+    </div>
+    <div class="bubble" data-url="http://www.example.com">
+        <img src="https://img.icons8.com/ios/96/null/phone--v1.png" style="height: 40px; padding: 5px"/>
+        <p>Phone</p>
+    </div>
 
-    <script>
-
-        // module aliases
-        var Engine = Matter.Engine,
-            Render = Matter.Render,
-            World = Matter.World,
-            Bodies = Matter.Bodies,
-            Events = Matter.Events;
-
-        // create an engine
-        var engine = Engine.create();
-
-        // create a renderer
-        var render = Render.create({
-            canvas: document.getElementById("canvas"),
-            engine: engine,
-            options: {
-                wireframes: false,
-                width: window.innerWidth,
-                height: window.innerHeight,
-                background: '#fff',
-            }
-        });
-
-        // get the canvas size
-        var canvas = render.canvas;
-
-        // create boundaries around the edge of the canvas
-        var boundaries = [
-            // top boundary
-            Bodies.rectangle(canvas.width / 2, 0, canvas.width, 5, {
-                isStatic: true, render: {
-                    fillStyle: '#FFFFFF'
-                }
-            }),
-            // bottom boundary
-            Bodies.rectangle(canvas.width / 2, canvas.height, canvas.width, 5, {
-                isStatic: true, render: {
-                    fillStyle: '#FFFFFF'
-                }
-            }),
-            // left boundary
-            Bodies.rectangle(0, canvas.height / 2, 5, canvas.height, {
-                isStatic: true, render: {
-                    fillStyle: '#FFFFFF'
-                }
-            }),
-            // right boundary
-            Bodies.rectangle(canvas.width, canvas.height / 2, 5, canvas.height, {
-                isStatic: true, render: {
-                    fillStyle: '#FFFFFF'
-                }
-            })
-        ];
-
-        // add the boundaries to the world
-        World.add(engine.world, boundaries);
-
-        // create necessary bodies
-        var bodiesDom = document.getElementsByClassName("block");
-        var bodies = [];
-        for (var i = 0, l = bodiesDom.length; i < l; i++) {
-            var body = Bodies.circle(50, 100, 50, {
-                restitution: 0.4,
-
-                // style the body
-                render: {
-                    fillStyle: '#FFFFFF',
-                    strokeStyle: "blue",
-                    lineWidth: 10,
-                },
-
-                // add custom link to body
-                url: bodiesDom[i].dataset.url,
-            });
-            bodiesDom[i].id = body.id;            
-            World.add(engine.world, body);
-            bodies.push(body);
-        }
-
-        // add mouse control (dragging)
-        var mouse = Matter.Mouse.create(render.canvas),
-            mouseConstraint = Matter.MouseConstraint.create(engine, {
-                mouse: mouse,
-                constraint: {
-                    stiffness: 0.2,
-                    render: {
-                        visible: false
-                    }
-                }
-            });
-
-        World.add(engine.world, mouseConstraint);
-
-        // add mouse control (clicking)
-        var startTime = null;
-        Events.on(mouseConstraint, "mousedown", function (event) {
-            startTime = Date.now();
-        });
-
-        Events.on(mouseConstraint, "mouseup", function (event) {
-            var endTime = Date.now();
-            var timeInterval = endTime - startTime;
-            var maxTimeInterval = 100; // maximum time interval in milliseconds
-
-            if (timeInterval <= maxTimeInterval) {
-                // Execute the action you want to perform on click
-                var mouseConstraint = event.source;
-                var bodies = engine.world.bodies;
-                if (!mouseConstraint.bodyB) {
-                    for (i = 0; i < bodies.length; i++) {
-                        var body = bodies[i];
-                        if (Matter.Bounds.contains(body.bounds, mouseConstraint.mouse.position)) {
-                            var bodyUrl = body.url;
-                            console.log("Body.Url >> " + bodyUrl);
-
-                            // Hyperlinking feature
-                            if (bodyUrl != undefined) {
-                                window.open(bodyUrl, '_blank');
-                                console.log("Hyperlink was opened");
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
-        });
-
-        // run the engine
-        Engine.run(engine);
-
-        // run the renderer
-        Render.run(render);
-
-        // update position divs with position bodies
-        window.requestAnimationFrame(update);
-        function update() {
-            for (var i = 0, l = bodiesDom.length; i < l; i++) {
-                var bodyDom = bodiesDom[i];
-                var body = null;
-                for (var j = 0, k = bodies.length; j < k; j++) {
-                    if (bodies[j].id == bodyDom.id) {
-                        body = bodies[j];
-                        break;
-                    }
-                }
-
-                if (body === null) continue;
-
-                bodyDom.style.transform = "translate( "
-                    + (body.position.x - bodyDom.offsetWidth / 2)
-                    + "px, "
-                    + (body.position.y - bodyDom.offsetHeight / 2)
-                    + "px )";
-            }
-            window.requestAnimationFrame(update);
-        }
-    </script>
+    <div style="display: flex; flex-direction: column">
+        <a target="_blank" href="https://icons8.com/icon/12580/mail">Mail icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/19318/youtube">YouTube icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/62856/github">GitHub icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/13930/linkedin">LinkedIn icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/13912/facebook">Facebook icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/20419/facebook-messenger">Facebook Messenger icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/16713/whatsapp">WhatsApp icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/32323/instagram">Instagram icon by Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/9659/phone">Phone icon by Icons8</a>
+    </div>
+    <script src="js/functions.js"></script>
 
 </body>
 

@@ -1,0 +1,46 @@
+#ball-container {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  left: 0px;
+  color: blue;
+}
+
+.bubble {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  font-size: 30px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  padding-top: 7px;
+
+  border: 1px solid #000;
+}
+
+.bubble img {
+  max-height: 48px;
+  max-width: 48px;
+}
+
+.clickable {
+  pointer-events: auto;
+}
+
+.body {
+    overflow: hidden;
+}
