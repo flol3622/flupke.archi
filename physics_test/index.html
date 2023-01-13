@@ -3,6 +3,7 @@
 
 <head>
     <title>Matter.js Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
     <style>
         #ball-container {
@@ -22,6 +23,17 @@
             background-color: rgb(255, 0, 0);
             z-index: 1;
             font-size: 30px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .clickable {
+            pointer-events: auto;
         }
     </style>
 
@@ -32,30 +44,18 @@
 
     <canvas id="canvas"
         style="position: absolute; top:0px; left:0px; height: 100%; width:100%; overflow: hidden;"></canvas>
-    <div id="ball-container"> haaha</div>
-    <div class="block small">Made with <a href="http://brm.io/matter-js/">Matter.js</a></div>
-    <div class="block">:)</div>
+    <div class="block">Made with <a href="http://brm.io/matter-js/">Matter.js</a></div>
+    <div data-url="http://www.example.com" class="block">:)</div>
     <div class="block">It's HTML5!!</div>
 
-
-
     <script>
-        var VIEW = {};
-        VIEW.SAFE_WIDTH = 100;
-        VIEW.SAFE_HEIGHT = 100;
-        VIEW.scale = Math.min(window.innerWidth / VIEW.SAFE_WIDTH, window.innerHeight / VIEW.SAFE_HEIGHT);
-        VIEW.width = window.innerWidth / VIEW.scale;
-        VIEW.height = window.innerHeight / VIEW.scale;
-        VIEW.centerX = VIEW.width / 2;
-        VIEW.centerY = VIEW.height / 2;
-        VIEW.offsetX = (VIEW.width - VIEW.SAFE_WIDTH) / 2 / VIEW.scale;
-        VIEW.offsetY = (VIEW.height - VIEW.SAFE_HEIGHT) / 2 / VIEW.scale;
 
         // module aliases
         var Engine = Matter.Engine,
             Render = Matter.Render,
             World = Matter.World,
-            Bodies = Matter.Bodies;
+            Bodies = Matter.Bodies,
+            Events = Matter.Events;
 
         // create an engine
         var engine = Engine.create();
@@ -68,6 +68,7 @@
                 wireframes: false,
                 width: window.innerWidth,
                 height: window.innerHeight,
+                background: '#fff',
             }
         });
 
@@ -77,58 +78,57 @@
         // create boundaries around the edge of the canvas
         var boundaries = [
             // top boundary
-            Bodies.rectangle(canvas.width / 2, 0, canvas.width, 50, { isStatic: true }),
+            Bodies.rectangle(canvas.width / 2, 0, canvas.width, 5, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            }),
             // bottom boundary
-            Bodies.rectangle(canvas.width / 2, canvas.height, canvas.width, 50, { isStatic: true }),
+            Bodies.rectangle(canvas.width / 2, canvas.height, canvas.width, 5, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            }),
             // left boundary
-            Bodies.rectangle(0, canvas.height / 2, 50, canvas.height, { isStatic: true }),
+            Bodies.rectangle(0, canvas.height / 2, 5, canvas.height, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            }),
             // right boundary
-            Bodies.rectangle(canvas.width, canvas.height / 2, 50, canvas.height, { isStatic: true })
+            Bodies.rectangle(canvas.width, canvas.height / 2, 5, canvas.height, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            })
         ];
 
         // add the boundaries to the world
         World.add(engine.world, boundaries);
 
-        // create a ball
-        var ball = Bodies.circle(50, 50, 50, {
-            restitution: 0.4,
-            render: {
-                fillStyle: '#FFFFFF',
-                strokeStyle: "red",
-                lineWidth: 10,
-            },
-            link: {
-                url: 'https://example.com',
-                x: 0,
-                y: 0,
-                width: 20,
-                height: 20
-            }
-        });
-
-
-        // add the ball to the world
-        World.add(engine.world, [ball]);
-
+        // create necessary bodies
         var bodiesDom = document.getElementsByClassName("block");
-        console.log(bodiesDom);
         var bodies = [];
         for (var i = 0, l = bodiesDom.length; i < l; i++) {
             var body = Bodies.circle(50, 100, 50, {
                 restitution: 0.4,
+
+                // style the body
                 render: {
                     fillStyle: '#FFFFFF',
                     strokeStyle: "blue",
                     lineWidth: 10,
-                }
+                },
+
+                // add custom link to body
+                url: bodiesDom[i].dataset.url,
             });
-            bodiesDom[i].id = body.id;
+            bodiesDom[i].id = body.id;            
+            World.add(engine.world, body);
             bodies.push(body);
         }
-        console.log(bodies);
-        World.add(engine.world, bodies);
 
-        // add mouse control
+        // add mouse control (dragging)
         var mouse = Matter.Mouse.create(render.canvas),
             mouseConstraint = Matter.MouseConstraint.create(engine, {
                 mouse: mouse,
@@ -142,12 +142,47 @@
 
         World.add(engine.world, mouseConstraint);
 
+        // add mouse control (clicking)
+        var startTime = null;
+        Events.on(mouseConstraint, "mousedown", function (event) {
+            startTime = Date.now();
+        });
+
+        Events.on(mouseConstraint, "mouseup", function (event) {
+            var endTime = Date.now();
+            var timeInterval = endTime - startTime;
+            var maxTimeInterval = 100; // maximum time interval in milliseconds
+
+            if (timeInterval <= maxTimeInterval) {
+                // Execute the action you want to perform on click
+                var mouseConstraint = event.source;
+                var bodies = engine.world.bodies;
+                if (!mouseConstraint.bodyB) {
+                    for (i = 0; i < bodies.length; i++) {
+                        var body = bodies[i];
+                        if (Matter.Bounds.contains(body.bounds, mouseConstraint.mouse.position)) {
+                            var bodyUrl = body.url;
+                            console.log("Body.Url >> " + bodyUrl);
+
+                            // Hyperlinking feature
+                            if (bodyUrl != undefined) {
+                                window.open(bodyUrl, '_blank');
+                                console.log("Hyperlink was opened");
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
         // run the engine
         Engine.run(engine);
 
         // run the renderer
         Render.run(render);
 
+        // update position divs with position bodies
         window.requestAnimationFrame(update);
         function update() {
             for (var i = 0, l = bodiesDom.length; i < l; i++) {
@@ -163,9 +198,9 @@
                 if (body === null) continue;
 
                 bodyDom.style.transform = "translate( "
-                    + (body.position.x)
+                    + (body.position.x - bodyDom.offsetWidth / 2)
                     + "px, "
-                    + (body.position.y)
+                    + (body.position.y - bodyDom.offsetHeight / 2)
                     + "px )";
             }
             window.requestAnimationFrame(update);
