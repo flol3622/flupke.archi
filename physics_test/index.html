@@ -3,6 +3,7 @@
 
 <head>
     <title>Matter.js Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
     <style>
         #ball-container {
             position: absolute;
@@ -11,15 +12,33 @@
             top: 0px;
             left: 0px;
             color: blue;
-        }        
+        }
+
+        .block {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            color: blue;
+            background-color: rgb(255, 0, 0);
+            z-index: 1;
+            font-size: 30px;
+        }
     </style>
 
+</head>
+
 <body>
+
+
     <canvas id="canvas"
         style="position: absolute; top:0px; left:0px; height: 100%; width:100%; overflow: hidden;"></canvas>
     <div id="ball-container"> haaha</div>
+    <div class="block small">Made with <a href="http://brm.io/matter-js/">Matter.js</a></div>
+    <div class="block">:)</div>
+    <div class="block">It's HTML5!!</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
+
+
     <script>
         // module aliases
         var Engine = Matter.Engine,
@@ -65,7 +84,7 @@
             render: {
                 fillStyle: '#FFFFFF',
                 strokeStyle: "red",
-                lineWidth: 3,
+                lineWidth: 10,
             },
             link: {
                 url: 'https://example.com',
@@ -79,6 +98,24 @@
 
         // add the ball to the world
         World.add(engine.world, [ball]);
+
+        var bodiesDom = document.getElementsByClassName("block");
+        console.log(bodiesDom);
+        var bodies = [];
+        for (var i = 0, l = bodiesDom.length; i < l; i++) {
+            var body = Bodies.circle(50, 100, 50, {
+                restitution: 0.4,
+                render: {
+                    fillStyle: '#FFFFFF',
+                    strokeStyle: "blue",
+                    lineWidth: 10,
+                }            
+            });
+            bodiesDom[i].id = body.id;
+            bodies.push(body);
+        }
+        console.log(bodies);
+        World.add(engine.world, bodies);
 
         // add mouse control
         var mouse = Matter.Mouse.create(render.canvas),
