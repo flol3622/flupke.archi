@@ -40,6 +40,17 @@
 
 
     <script>
+        var VIEW = {};
+        VIEW.SAFE_WIDTH = 100;
+        VIEW.SAFE_HEIGHT = 100;
+        VIEW.scale = Math.min(window.innerWidth / VIEW.SAFE_WIDTH, window.innerHeight / VIEW.SAFE_HEIGHT);
+        VIEW.width = window.innerWidth / VIEW.scale;
+        VIEW.height = window.innerHeight / VIEW.scale;
+        VIEW.centerX = VIEW.width / 2;
+        VIEW.centerY = VIEW.height / 2;
+        VIEW.offsetX = (VIEW.width - VIEW.SAFE_WIDTH) / 2 / VIEW.scale;
+        VIEW.offsetY = (VIEW.height - VIEW.SAFE_HEIGHT) / 2 / VIEW.scale;
+
         // module aliases
         var Engine = Matter.Engine,
             Render = Matter.Render,
@@ -109,7 +120,7 @@
                     fillStyle: '#FFFFFF',
                     strokeStyle: "blue",
                     lineWidth: 10,
-                }            
+                }
             });
             bodiesDom[i].id = body.id;
             bodies.push(body);
@@ -137,16 +148,28 @@
         // run the renderer
         Render.run(render);
 
-        // update the position of the ball-container
-        function updateBallContainer() {
-            var ballContainer = document.getElementById("ball-container");
-            var ballPos = Render.worldToScreen(render, ball.position);
-            ballContainer.style.top = ballPos.y + "px";
-            ballContainer.style.left = ballPos.x + "px";
+        window.requestAnimationFrame(update);
+        function update() {
+            for (var i = 0, l = bodiesDom.length; i < l; i++) {
+                var bodyDom = bodiesDom[i];
+                var body = null;
+                for (var j = 0, k = bodies.length; j < k; j++) {
+                    if (bodies[j].id == bodyDom.id) {
+                        body = bodies[j];
+                        break;
+                    }
+                }
+
+                if (body === null) continue;
+
+                bodyDom.style.transform = "translate( "
+                    + (body.position.x)
+                    + "px, "
+                    + (body.position.y)
+                    + "px )";
+            }
+            window.requestAnimationFrame(update);
         }
-
-        Events.on(render, "afterRender", updateBallContainer);
-
     </script>
 
 </body>
