@@ -32,7 +32,6 @@
 
     <canvas id="canvas"
         style="position: absolute; top:0px; left:0px; height: 100%; width:100%; overflow: hidden;"></canvas>
-    <div id="ball-container"> haaha</div>
     <div class="block small">Made with <a href="http://brm.io/matter-js/">Matter.js</a></div>
     <div class="block">:)</div>
     <div class="block">It's HTML5!!</div>
@@ -68,6 +67,7 @@
                 wireframes: false,
                 width: window.innerWidth,
                 height: window.innerHeight,
+                background: '#fff',
             }
         });
 
@@ -77,39 +77,35 @@
         // create boundaries around the edge of the canvas
         var boundaries = [
             // top boundary
-            Bodies.rectangle(canvas.width / 2, 0, canvas.width, 50, { isStatic: true }),
+            Bodies.rectangle(canvas.width / 2, 0, canvas.width, 5, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            }),
             // bottom boundary
-            Bodies.rectangle(canvas.width / 2, canvas.height, canvas.width, 50, { isStatic: true }),
+            Bodies.rectangle(canvas.width / 2, canvas.height, canvas.width, 5, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            }),
             // left boundary
-            Bodies.rectangle(0, canvas.height / 2, 50, canvas.height, { isStatic: true }),
+            Bodies.rectangle(0, canvas.height / 2, 5, canvas.height, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            }),
             // right boundary
-            Bodies.rectangle(canvas.width, canvas.height / 2, 50, canvas.height, { isStatic: true })
+            Bodies.rectangle(canvas.width, canvas.height / 2, 5, canvas.height, {
+                isStatic: true, render: {
+                    fillStyle: '#FFFFFF'
+                }
+            })
         ];
 
         // add the boundaries to the world
         World.add(engine.world, boundaries);
 
-        // create a ball
-        var ball = Bodies.circle(50, 50, 50, {
-            restitution: 0.4,
-            render: {
-                fillStyle: '#FFFFFF',
-                strokeStyle: "red",
-                lineWidth: 10,
-            },
-            link: {
-                url: 'https://example.com',
-                x: 0,
-                y: 0,
-                width: 20,
-                height: 20
-            }
-        });
-
-
-        // add the ball to the world
-        World.add(engine.world, [ball]);
-
+        // create necessary bodies
         var bodiesDom = document.getElementsByClassName("block");
         console.log(bodiesDom);
         var bodies = [];
@@ -148,6 +144,7 @@
         // run the renderer
         Render.run(render);
 
+        // update position divs with position bodies
         window.requestAnimationFrame(update);
         function update() {
             for (var i = 0, l = bodiesDom.length; i < l; i++) {
@@ -163,9 +160,9 @@
                 if (body === null) continue;
 
                 bodyDom.style.transform = "translate( "
-                    + (body.position.x)
+                    + (body.position.x - bodyDom.offsetWidth / 2)
                     + "px, "
-                    + (body.position.y)
+                    + (body.position.y - bodyDom.offsetHeight / 2)
                     + "px )";
             }
             window.requestAnimationFrame(update);
