@@ -158,6 +158,19 @@ function update() {
 
     if (body === null) continue;
 
+    if (body.position.x < bodyDom.offsetWidth / 2) {
+      body.position.x = bodyDom.offsetWidth / 2;
+    }
+    if (body.position.x > window.innerWidth - bodyDom.offsetWidth / 2) {
+      body.position.x = window.innerWidth - bodyDom.offsetWidth / 2;
+    }
+    if (body.position.y < bodyDom.offsetHeight / 2) {
+      body.position.y = bodyDom.offsetHeight / 2;
+    }
+    if (body.position.y > window.innerHeight - bodyDom.offsetHeight / 2) {
+      body.position.y = window.innerHeight - bodyDom.offsetHeight / 2;
+    }
+    
     bodyDom.style.transform =
       "translate( " +
       (body.position.x - bodyDom.offsetWidth / 2) +
