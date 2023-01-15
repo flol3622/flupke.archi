@@ -16,7 +16,7 @@ var render = Render.create({
     wireframes: false,
     width: window.innerWidth,
     height: window.innerHeight,
-    background: "#fff",
+    background: "#00",
   },
 });
 

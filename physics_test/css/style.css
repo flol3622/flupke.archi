@@ -1,17 +1,7 @@
-#ball-container {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 0px;
-  left: 0px;
-  color: blue;
-}
-
 .bubble {
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 1;
   font-size: 30px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -27,20 +17,20 @@
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  padding-top: 7px;
+  padding-top: 9px;
 
-  border: 1px solid #000;
+  border: 1px solid rgb(77, 77, 77);
+  background-color: rgba(255, 255, 255, 0.719);
 }
 
 .bubble img {
   max-height: 48px;
   max-width: 48px;
 }
+.bubble p {
+  font-size: 15px;
+}
 
 .clickable {
   pointer-events: auto;
-}
-
-.body {
-    overflow: hidden;
 }
