@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -9,9 +9,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-
+      <main className="bg-slate-800 text-white h-screen w-screen flex items-center justify-center">
+        <p className="">lol</p>
+        {/* <div className="h-screen border border-dashed"></div> */}
+        <hr className=" rotate-90 "/>
+        lol
       </main>
     </>
-  )
+  );
 }
