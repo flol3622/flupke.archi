@@ -12,6 +12,12 @@ const titleFont = localFont({
   variable: "--font-title",
 });
 
+const bodyFont = localFont({
+  src: "./SourceSansPro-Regular.ttf",
+  style: "normal",
+  variable: "--font-body",
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const canonicalUrl = (
@@ -23,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <link rel="canonical" href={canonicalUrl} />
       </Head>
-      <main className={`${titleFont.variable} font-sans`}>
+      <main className={`${titleFont.variable} font-sans, ${bodyFont.variable} font-serif`}>
         <Component {...pageProps} />
       </main>
     </RecoilRoot>

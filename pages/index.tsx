@@ -1,5 +1,13 @@
-import Head from "next/head";
+import IntroLines from "@/components/IntroLines";
 import Navbar from "@/components/Navbar";
+import Parkour from "@/components/Parkour";
+import ImgProfile from "@/public/images/profile.webp";
+import Head from "next/head";
+import Image from "next/image";
+
+function Spacer() {
+  return <div className="h-3 border-l border-black" />;
+}
 
 export default function Home() {
   return (
@@ -11,6 +19,32 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      {/* <Intro /> */}
+      <div className="flex items-center justify-center pt-3">
+        <div className="m-2 max-w-sm font-body">
+          <h2 className="font-title text-lg sm:text-xl ">About me</h2>
+          Ea fugiat eu commodo ut magna sit sint incididunt amet ea Lorem culpa
+          tempor officia. Duis tempor eu et veniam exercitation deserunt magna
+          occaecat proident sint reprehenderit cupidatat. Culpa cupidatat fugiat
+          ullamco magna. Proident ut ad cillum nostrud. Cupidatat do esse amet
+          adipisicing duis duis in elit sint officia.
+        </div>
+        <div className="m-2 min-w-max font-body">
+          <Image
+            src={ImgProfile}
+            alt="Profile picture"
+            className="rounded-full"
+            width={200}
+          />
+        </div>
+        <div className="m-2 flex max-w-sm flex-col items-center font-body">
+          <Parkour />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_3rem)_1fr_repeat(3,_1rem)] grid-rows-[1.5rem_10px_3rem_1rem_repeat(5,_3rem)] font-body">
+        <IntroLines />
+      </div>
     </>
   );
 }
