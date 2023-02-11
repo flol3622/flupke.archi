@@ -11,7 +11,10 @@ export default function IntroCard(props: IntroCardProps) {
     <div
       className={`col-start-3 col-end-13 row-span-2 row-start-${props.start} pb-2 pt-1`}
     >
-      <div className={`flex justify-${props.position || "start"}`}>
+      <div
+        className="flex"
+        style={{ justifyContent: `${props.position || "start"}` }}
+      >
         <h2 className={`border-b-2 border-dotted ${props.color} font-title`}>
           {props.title}
         </h2>

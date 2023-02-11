@@ -6,10 +6,8 @@ import Parkour from "@/components/Parkour";
 import ImgProfile from "@/public/images/profile.webp";
 import Head from "next/head";
 import Image from "next/image";
-
-function Spacer() {
-  return <div className="h-3 border-l border-black" />;
-}
+import Maintenance from "@/public/images/under-maintenance.png";
+import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
   return (
@@ -22,29 +20,28 @@ export default function Home() {
       </Head>
       <IntroBg />
       <Navbar />
-      <div className="flex-wr flex h-[calc(100vh-8rem)] items-center justify-center overflow-hidden pt-3">
-        <div className="m-2 max-w-sm font-body">
-          <h2 className="font-title text-lg sm:text-xl ">About me</h2>
-          Ea fugiat eu commodo ut magna sit sint incididunt amet ea Lorem culpa
-          tempor officia. Duis tempor eu et veniam exercitation deserunt magna
-          occaecat proident sint reprehenderit cupidatat. Culpa cupidatat fugiat
-          ullamco magna. Proident ut ad cillum nostrud. Cupidatat do esse amet
-          adipisicing duis duis in elit sint officia.
+      <div className="h-16" />
+      <Image
+        src={Maintenance}
+        alt="Maintenance"
+        width={150}
+        className="absolute -z-10"
+      />
+      <div className="flex h-[calc(100vh-8rem)] items-center justify-center p-3 max-mobile:flex-col max-mobile:justify-start">
+        <div className="m-2 max-w-sm font-body max-md:max-w-lg">
+          <AboutMe />
         </div>
-        <div className="m-2 min-w-max font-body">
-          <Image
-            src={ImgProfile}
-            alt="Profile picture"
-            className="rounded-full"
-            width={200}
-          />
-        </div>
-        <div className="m-2 flex max-w-sm flex-col items-center font-body">
+        <Image
+          src={ImgProfile}
+          alt="Profile picture"
+          className="m-2 w-52 rounded-full max-md:w-36"
+        />
+        <div className="m-2 flex max-w-sm flex-col items-center font-body max-lg:hidden">
           <Parkour />
         </div>
       </div>
 
-      <div className="absolute top-[calc(100%-50px)] grid grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_3rem)_1fr_repeat(3,_1rem)] grid-rows-[1.5rem_10px_3rem_1rem_1rem_repeat(4,_2rem_auto)] font-body max-sm:grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_2.5rem)_1fr_repeat(3,_1rem)]">
+      <div className="absolute top-[calc(100%-50px)] grid w-full grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_3rem)_1fr_repeat(3,_1rem)] grid-rows-[1.5rem_10px_3rem_1rem_1rem_repeat(4,_2rem_auto)] font-body max-sm:grid-cols-[repeat(2,_0.5rem)_1fr_repeat(8,_2.5rem)_1fr_repeat(3,_0.5rem)] max-sm:grid-rows-[1.5rem_10px_3rem_0.5rem_1rem_repeat(4,_2rem_auto)]">
         <IntroLines />
         <IntroCard title="Architecture" color="border-yellow-500" start={6}>
           Duis eu sunt occaecat mollit enim nostrud eu dolore. Officia ad

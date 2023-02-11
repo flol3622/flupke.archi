@@ -6,6 +6,7 @@ function BgImg({ src }: { src: string }) {
     <div className="h-[40vh] flex-grow">
       <img
         src={src}
+        alt=""
         className="max-h-full min-w-full object-cover align-bottom"
       />
     </div>
@@ -24,7 +25,7 @@ export default function IntroBg() {
   return (
     <div
       id="introBg"
-      className={`fixed -z-10 flex flex-wrap opacity-20`}
+      className={`fixed w-full -z-20 flex flex-wrap opacity-20`}
       style={{ transform: `translateY(${scroll}px)` }}
     >
       <BgImg src="/images/bg/bg-02.webp" />
