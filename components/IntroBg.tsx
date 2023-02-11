@@ -27,7 +27,6 @@ export default function IntroBg() {
       className={`fixed -z-10 flex flex-wrap opacity-20`}
       style={{ transform: `translateY(${scroll}px)` }}
     >
-      <BgImg src="/images/bg/bg-01.webp" />
       <BgImg src="/images/bg/bg-02.webp" />
       <BgImg src="/images/bg/bg-03.webp" />
       <BgImg src="/images/bg/bg-04.webp" />
