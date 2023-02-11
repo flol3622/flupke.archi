@@ -1,5 +1,13 @@
-import Head from "next/head";
+import IntroBg from "@/components/IntroBg";
+import IntroCard from "@/components/IntroCard";
+import IntroLines from "@/components/IntroLines";
 import Navbar from "@/components/Navbar";
+import Parkour from "@/components/Parkour";
+import ImgProfile from "@/public/images/profile.webp";
+import Head from "next/head";
+import Image from "next/image";
+import Maintenance from "@/public/images/under-maintenance.png";
+import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
   return (
@@ -10,7 +18,70 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <IntroBg />
       <Navbar />
+      <div className="h-16" />
+      <Image
+        src={Maintenance}
+        alt="Maintenance"
+        width={150}
+        className="absolute -z-10"
+      />
+      <div className="flex h-[calc(100vh-8rem)] items-center justify-center p-3 max-mobile:flex-col max-mobile:justify-start">
+        <div className="m-2 max-w-sm font-body max-md:max-w-lg">
+          <AboutMe />
+        </div>
+        <Image
+          src={ImgProfile}
+          alt="Profile picture"
+          className="m-2 w-52 rounded-full max-md:w-36"
+        />
+        <div className="m-2 flex max-w-sm flex-col items-center font-body max-lg:hidden">
+          <Parkour />
+        </div>
+      </div>
+
+      <div className="absolute top-[calc(100%-50px)] grid w-full grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_3rem)_1fr_repeat(3,_1rem)] grid-rows-[1.5rem_10px_3rem_1rem_1rem_repeat(4,_2rem_auto)] font-body max-sm:grid-cols-[repeat(2,_0.5rem)_1fr_repeat(8,_2.5rem)_1fr_repeat(3,_0.5rem)] max-sm:grid-rows-[1.5rem_10px_3rem_0.5rem_1rem_repeat(4,_2rem_auto)]">
+        <IntroLines />
+        <IntroCard title="Architecture" color="border-yellow-500" start={6}>
+          Duis eu sunt occaecat mollit enim nostrud eu dolore. Officia ad
+          eiusmod consectetur velit nisi. Veniam exercitation irure eiusmod aute
+          esse id officia in do. Voluptate nostrud cillum proident cupidatat
+          labore qui pariatur duis qui fugiat ex nostrud sint pariatur.
+          Excepteur consequat dolor minim dolor eiusmod anim velit cillum.
+          Aliquip do ex adipisicing labore labore excepteur eu magna culpa
+          excepteur. Eu consectetur consequat irure nostrud qui ea ut elit
+          ullamco ipsum magna.
+        </IntroCard>
+        <IntroCard title="3D printing" color="border-green-500" position="end">
+          Duis eu sunt occaecat mollit enim nostrud eu dolore. Officia ad
+          eiusmod consectetur velit nisi. Veniam exercitation irure eiusmod aute
+          esse id officia in do. Voluptate nostrud cillum proident cupidatat
+          labore qui pariatur duis qui fugiat ex nostrud sint pariatur.
+          Excepteur consequat dolor minim dolor eiusmod anim velit cillum.
+          Aliquip do ex adipisicing labore labore excepteur eu magna culpa
+          excepteur. Eu consectetur consequat irure nostrud qui ea ut elit
+          ullamco ipsum magna.
+        </IntroCard>
+        <IntroCard title="Coding" color="border-red-500">
+          Duis eu sunt occaecat mollit enim nostrud eu dolore. Officia ad
+          eiusmod consectetur velit nisi. Veniam exercitation irure eiusmod aute
+          esse id officia in do. Voluptate nostrud cillum proident cupidatat
+          labore qui pariatur duis qui fugiat ex nostrud sint pariatur.
+          Excepteur consequat dolor minim dolor eiusmod anim velit cillum.
+          Aliquip do ex adipisicing labore labore excepteur eu magna culpa
+          excepteur. Eu consectetur consequat irure nostrud qui ea ut elit
+          ullamco ipsum magna.
+        </IntroCard>
+        <IntroCard title="Woodworking" color="border-blue-500" position="end">
+          Excepteur amet ullamco ex quis proident ad sint voluptate nisi magna.
+          Et est qui ad cupidatat enim sit enim cupidatat magna veniam.
+          Excepteur nostrud reprehenderit irure ea do aliquip sit sit dolore.
+          Sunt est nostrud excepteur sint ipsum in elit incididunt voluptate
+          pariatur eu magna commodo est. Fugiat duis aliqua est adipisicing
+          consequat.
+        </IntroCard>
+      </div>
     </>
   );
 }

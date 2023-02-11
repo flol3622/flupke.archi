@@ -8,8 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        "mobile": "500px",
+      },
       fontFamily: {
         title: ["var(--font-title)"],
+        body: ["var(--font-body)"],
       },
     },
   },
