@@ -1,13 +1,13 @@
+import AboutMe from "@/components/AboutMe";
 import IntroBg from "@/components/IntroBg";
 import IntroCard from "@/components/IntroCard";
 import IntroLines from "@/components/IntroLines";
 import Navbar from "@/components/Navbar";
 import Parkour from "@/components/Parkour";
 import ImgProfile from "@/public/images/profile.webp";
+import Maintenance from "@/public/images/under-maintenance.png";
 import Head from "next/head";
 import Image from "next/image";
-import Maintenance from "@/public/images/under-maintenance.png";
-import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
   return (
@@ -21,21 +21,25 @@ export default function Home() {
       <IntroBg />
       <Navbar />
       <div className="h-16" />
-      <Image
-        src={Maintenance}
-        alt="Maintenance"
-        width={150}
-        className="absolute -z-10"
-      />
       <div className="flex h-[calc(100vh-8rem)] items-center justify-center p-3 max-mobile:flex-col max-mobile:justify-start">
         <div className="m-2 max-w-sm font-body max-md:max-w-lg">
           <AboutMe />
         </div>
-        <Image
-          src={ImgProfile}
-          alt="Profile picture"
-          className="m-2 w-52 rounded-full max-md:w-36"
-        />
+        <div className="relative m-2 w-52 shrink-0 overflow-hidden rounded-full max-md:w-36 ">
+          <Image
+            src={ImgProfile}
+            alt="Profile picture"
+            width={308}
+            height={308}
+          />
+          <Image
+            src={Maintenance}
+            alt="Maintenance"
+            width={150}
+            className="absolute top-0 left-0"
+          />
+        </div>
+
         <div className="m-2 flex max-w-sm flex-col items-center font-body max-lg:hidden">
           <Parkour />
         </div>

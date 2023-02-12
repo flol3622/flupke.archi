@@ -1,5 +1,4 @@
-import Image from "next/image";
-import link from "../public/icons/box-arrow-up-right.svg";
+import { LinkIco } from "./icons";
 
 function Spacer({ children, url }: { children: any; url?: string }) {
   return (
@@ -8,7 +7,7 @@ function Spacer({ children, url }: { children: any; url?: string }) {
       <p className="text-center">
         {children}
         <a href={url}>
-          <Image src={link} alt="" height={10} className="ml-1 mb-1 inline" />
+          <LinkIco className="ml-1 mb-1 inline text-xs" />
         </a>
       </p>
     </>
