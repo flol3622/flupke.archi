@@ -1,5 +1,3 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -9,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        "mobile": "500px",
+        mobile: "500px",
       },
       fontFamily: {
         title: ["var(--font-title)"],
