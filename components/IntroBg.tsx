@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 function BgImg({ src }: { src: string }) {
   return (
@@ -10,20 +9,12 @@ function BgImg({ src }: { src: string }) {
 }
 
 export default function IntroBg() {
-  const [scroll, setScroll] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScroll(-window.scrollY / 2);
-    });
-  });
-
   return (
     <div id="introBgContainer" className="flex justify-center">
       <div
         id="introBg"
-        className="fixed top-16 -z-20 w-full max-w-[calc(5*500px)] columns-1 gap-0 opacity-20 mobile:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
-        style={{ transform: `translateY(${scroll}px)` }}
+        className="absolute  top-16 -z-20 w-full max-w-[calc(5*500px)] columns-1 gap-0 mobile:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
+        style={{ opacity: "0.15" }}
       >
         <BgImg src="/images/bg/bg-02.webp" />
         <BgImg src="/images/bg/bg-03.webp" />
