@@ -28,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <Head>
         <link rel="canonical" href={canonicalUrl} />
+        <link rel="icon" href="/single-black.ico" />
       </Head>
       <main
         className={`${titleFont.variable} font-sans, ${bodyFont.variable} font-serif`}

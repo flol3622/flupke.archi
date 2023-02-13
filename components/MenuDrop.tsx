@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 export default function MenuDrop() {
   return (
     <ul
-      className={`fixed right-0 top-16 w-28 text-center font-body transition duration-500 ease-in-out ${
+      className={`fixed right-0 top-16 z-20 w-28 text-center font-body transition duration-500 ease-in-out ${
         useRecoilValue(menuDrop) ? "translate-x-0" : "translate-x-28"
       }`}
     >
