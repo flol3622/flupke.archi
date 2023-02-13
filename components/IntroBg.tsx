@@ -9,11 +9,11 @@ export default function IntroBg() {
         className="absolute  top-16 -z-20 w-full max-w-[calc(5*500px)] columns-1 gap-0 mobile:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
         style={{ opacity: "0.15" }}
       >
-        {Bg.default.map((item, index) => (
-          <div className="h-auto w-full">
+        {Bg.default.map((item, i) => (
+          <div key={i} className="h-auto w-full">
             <Image
               placeholder="blur"
-              key={index}
+              key={i}
               src={item}
               alt=""
               width={500}
