@@ -2,12 +2,14 @@ import AboutMe from "@/components/AboutMe";
 import IntroBg from "@/components/IntroBg";
 import IntroCard from "@/components/IntroCard";
 import IntroLines from "@/components/IntroLines";
+import MyImage from "@/components/MyImage";
 import Navbar from "@/components/Navbar";
 import Parkour from "@/components/Parkour";
 import ImgProfile from "@/public/images/profile.webp";
 import Maintenance from "@/public/images/under-maintenance.png";
 import Head from "next/head";
 import Image from "next/image";
+import { Blurhash } from "react-blurhash";
 
 export default function Home() {
   return (
@@ -20,6 +22,13 @@ export default function Home() {
       <IntroBg />
       <Navbar />
       <div className="h-16" />
+      <MyImage
+        src="https://synologyflupke.synology.me/projects/test/IMG_0072.webp"
+        alt="test"
+        hash="LOED3l_4nfrUzmi^I]T29dROIUR*"
+        width={300}
+        height={300}
+      />
       <div className="flex h-[calc(100vh-8rem)] items-center justify-center p-3 max-mobile:flex-col max-mobile:justify-start">
         <div className="m-2 max-w-sm font-body max-md:max-w-lg">
           <AboutMe />
