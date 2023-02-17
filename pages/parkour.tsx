@@ -1,9 +1,11 @@
-
 import Navbar from "@/components/Navbar";
 import Parkour from "@/components/Parkour";
+import menuDrop from "@/recoil/menuDrop";
 import Head from "next/head";
+import { useSetRecoilState } from "recoil";
 
 export default function Home() {
+  const setMenuDrop = useSetRecoilState(menuDrop);
   return (
     <>
       <Head>
@@ -13,7 +15,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <div className="relative bg-gray-200 flex top-16 h-[calc(100vh-4rem)] flex-col items-center justify-center p-3 font-body">
+      <div
+        onClick={() => setMenuDrop(false)}
+        className="relative top-16 flex h-[calc(100vh-4rem)] flex-col items-center justify-center bg-gray-200 p-3 font-body"
+      >
         <Parkour />
       </div>
     </>

@@ -1,16 +1,17 @@
 import AboutMe from "@/components/AboutMe";
 import IntroCard from "@/components/IntroCard";
 import IntroLines from "@/components/IntroLines";
-import MyImage from "@/components/MyImage";
 import Navbar from "@/components/Navbar";
 import Parkour from "@/components/Parkour";
 import ImgProfile from "@/public/images/profile.webp";
 import Maintenance from "@/public/images/under-maintenance.png";
+import menuDrop from "@/recoil/menuDrop";
 import Head from "next/head";
 import Image from "next/image";
-import { Blurhash } from "react-blurhash";
+import { useSetRecoilState } from "recoil";
 
 export default function Home() {
+  const setMenuDrop = useSetRecoilState(menuDrop);
   return (
     <>
       <Head>
@@ -19,10 +20,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Navbar />
-      <div className="bg-grey">
-
-      </div>
-      <div className="bg-gray-200 relative top-16 flex h-[calc(100vh-7rem)] items-center justify-center p-3 max-mobile:flex-col max-mobile:justify-start">
+      <div className="bg-grey"></div>
+      <div
+        className="relative top-16 flex h-[calc(100vh-7rem)] items-center justify-center bg-gray-200 p-3 max-mobile:flex-col max-mobile:justify-start"
+        onClick={() => setMenuDrop(false)}
+      >
         <div className="m-2 max-w-sm font-body max-md:max-w-lg">
           <AboutMe />
         </div>
@@ -46,7 +48,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-gray-200 absolute top-[calc(100%-50px)] grid w-full grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_3rem)_1fr_repeat(3,_1rem)] grid-rows-[1.5rem_10px_3rem_1rem_1rem_repeat(4,_2rem_auto)] font-body max-sm:grid-cols-[repeat(2,_0.5rem)_1fr_repeat(8,_2.5rem)_1fr_repeat(3,_0.5rem)] max-sm:grid-rows-[1.5rem_10px_3rem_0.5rem_1rem_repeat(4,_2rem_auto)]">
+      <div
+        className="absolute top-[calc(100%-50px)] grid w-full grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_3rem)_1fr_repeat(3,_1rem)] grid-rows-[1.5rem_10px_3rem_1rem_1rem_repeat(4,_2rem_auto)] bg-gray-200 font-body max-sm:grid-cols-[repeat(2,_0.5rem)_1fr_repeat(8,_2.5rem)_1fr_repeat(3,_0.5rem)] max-sm:grid-rows-[1.5rem_10px_3rem_0.5rem_1rem_repeat(4,_2rem_auto)]"
+        onClick={() => setMenuDrop(false)}
+      >
         <IntroLines />
         <IntroCard title="Architecture" color="border-yellow-500" start={6}>
           Duis eu sunt occaecat mollit enim nostrud eu dolore. Officia ad
