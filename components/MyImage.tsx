@@ -14,21 +14,32 @@ type MyImageProps = {
 export default function MyImage({
   src,
   alt,
+  width,
+  height,
   hash,
   ...props
 }: MyImageProps & ImageProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {!imageLoaded && <Blurhash hash={hash} {...props} />}
+    <div
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+        position: "relative",
+      }}
+      {...props}
+    >
+      {!imageLoaded && (
+        <Blurhash hash={hash} style={{width:"100%", height:"100%"}}/>
+      )}
       <Image
         src={src}
         alt={alt || ""}
         onLoadingComplete={() => setImageLoaded(true)}
+        className="absolute object-cover"
         style={{ opacity: imageLoaded ? 1 : 0, objectFit: "cover" }}
-        {...props}
-        fill={props.fill || false}
+        fill
       />
     </div>
   );
