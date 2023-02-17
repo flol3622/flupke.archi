@@ -11,6 +11,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ["synologyflupke.synology.me"],
+  },
 };
 
 module.exports = nextConfig;
