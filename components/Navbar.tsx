@@ -6,15 +6,12 @@ import MenuDrop from "./MenuDrop";
 
 export default function Navbar() {
   const [menuDropState, setMenuDrop] = useRecoilState(menuDrop);
-  const setMenuDropState = () => {
-    setMenuDrop(!menuDropState);
-  };
 
   return (
     <>
       <nav className="fixed z-10 flex w-full">
         <div className="flex h-16 w-16 items-center justify-center border-b border-black bg-white">
-          <Link href="/">
+          <Link href="/" onClick={() => setMenuDrop(false)}>
             <SingeBlack className="text-5xl" />
           </Link>
         </div>
@@ -25,7 +22,7 @@ export default function Navbar() {
           Philippe Soubrier
         </div>
         <div
-          onClick={() => setMenuDropState()}
+          onClick={() => setMenuDrop(!menuDropState)}
           className="flex h-16 w-16 items-center justify-center border-b border-l border-black bg-white"
         >
           <Menu className="text-xl" />
