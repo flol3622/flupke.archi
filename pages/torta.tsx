@@ -33,6 +33,7 @@ export default function Home() {
         className="fixed bottom-0 flex h-16 w-16 cursor-pointer items-center justify-center border-t border-r border-black bg-white text-sm"
         href="https://synologyflupke.synology.me/projects/test/TortaMilanese_boekje.pdf"
         target="_blank"
+        rel="noreferrer"
       >
         <DownloadIco className="text-2xl" />
       </a>
