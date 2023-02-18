@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@next/font": "^13.1.2",
+    "@react-pdf-viewer/core": "3.6.0",
+    "@react-pdf-viewer/default-layout": "3.6.0",
+    "@react-pdf-viewer/get-file": "^3.11.0",
     "@svgr/webpack": "^6.5.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
@@ -18,6 +21,7 @@
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
     "next": "13.1.2",
+    "pdfjs-dist": "^2.15.349",
     "react": "18.2.0",
     "react-blurhash": "^0.3.0",
     "react-dom": "18.2.0",

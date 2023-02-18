@@ -1,6 +1,7 @@
 import AboutMe from "@/components/AboutMe";
 import IntroCard from "@/components/IntroCard";
 import IntroLines from "@/components/IntroLines";
+import MyImage from "@/components/MyImage";
 import Navbar from "@/components/Navbar";
 import Parkour from "@/components/Parkour";
 import ImgProfile from "@/public/images/profile.webp";
@@ -53,14 +54,13 @@ export default function Home() {
         <div className="  grid w-full max-w-6xl grid-cols-[repeat(2,_1rem)_1fr_repeat(8,_3rem)_1fr_repeat(3,_1rem)] grid-rows-[1.5rem_10px_3rem_1rem_1rem_repeat(4,_2rem_auto)] font-body max-sm:grid-cols-[repeat(2,_0.5rem)_1fr_repeat(8,_2.5rem)_1fr_repeat(3,_0.5rem)] max-sm:grid-rows-[1.5rem_10px_3rem_0.5rem_1rem_repeat(4,_2rem_auto)]">
           <IntroLines />
           <IntroCard title="Architecture" color="border-red-500" start={6}>
-            Duis eu sunt occaecat mollit enim nostrud eu dolore. Officia ad
-            eiusmod consectetur velit nisi. Veniam exercitation irure eiusmod
-            aute esse id officia in do. Voluptate nostrud cillum proident
-            cupidatat labore qui pariatur duis qui fugiat ex nostrud sint
-            pariatur. Excepteur consequat dolor minim dolor eiusmod anim velit
-            cillum. Aliquip do ex adipisicing labore labore excepteur eu magna
-            culpa excepteur. Eu consectetur consequat irure nostrud qui ea ut
-            elit ullamco ipsum magna.
+            Aute nostrud ea officia in sint culpa dolore mollit id non dolor
+            officia. Laboris anim pariatur aute reprehenderit consequat aliqua
+            pariatur sunt sit tempor. Nulla dolor occaecat anim irure anim magna
+            dolor ipsum aliqua. Sunt exercitation culpa id exercitation
+            exercitation exercitation magna. Mollit incididunt ullamco occaecat
+            eu fugiat nulla ut. Laboris consectetur duis mollit sit nostrud elit
+            velit laborum consectetur adipisicing consequat.
           </IntroCard>
           <IntroCard
             title="3D printing"
@@ -86,7 +86,11 @@ export default function Home() {
             culpa excepteur. Eu consectetur consequat irure nostrud qui ea ut
             elit ullamco ipsum magna.
           </IntroCard>
-          <IntroCard title="Woodworking" color="border-green-500" position="end">
+          <IntroCard
+            title="Woodworking"
+            color="border-green-500"
+            position="end"
+          >
             Excepteur amet ullamco ex quis proident ad sint voluptate nisi
             magna. Et est qui ad cupidatat enim sit enim cupidatat magna veniam.
             Excepteur nostrud reprehenderit irure ea do aliquip sit sit dolore.
